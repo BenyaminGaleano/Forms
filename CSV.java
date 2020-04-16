@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileFilter;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
@@ -31,7 +30,8 @@ public class CSV {
         final int idColIn = wIn.settings.get("idCol", Integer.class) - 1;
         final int gradeColIn = wIn.settings.get("gradeCol", Integer.class) - 1;
         wIn.consumeCSVs((row)->{
-            final double gradeAux = Double.parseDouble(row.get(gradeColIn).replaceAll("\"", "").split("/")[0].trim());
+            final String[] aux = row.get(gradeColIn).replaceAll("\"", "").split("/");
+            final double gradeAux = Math.round(Double.parseDouble(aux[0].trim()) / Double.parseDouble(aux[1]) * wOut.settings.get("grade", Integer.class));
             
             if(!ids.containsKey(row.get(idColIn))){
                 ids.put(row.get(idColIn), gradeAux);
