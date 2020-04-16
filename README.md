@@ -10,3 +10,7 @@ Los archivos config que se encuentran en el directorio principal son para las pr
 - **nameCol** el número de columna del nombre del alumano.
 - **startline** número de linea donde inicia los datos no se cuentan las etiquetas de columna, sólo los datos puros.
 - **grade** nota máxima para los alumnos, como este trabaja con google forms y el formato es xxx/yyy donde xxx es la nota que sacó el alumno y yyy es el máximo, los divide y así obtiene el porcentaje de ahí puede reponderar la nota colocando una nota en grade.
+
+### Ejecutar
+en linux ./grade
+en windows Compile CSV.java y utilice de forma normal esta clase.
