@@ -1,0 +1,4 @@
+#!/bin/bash
+
+javac CSV.java
+java CSV
