@@ -91,10 +91,13 @@ public class CSVWatcher {
         for(LinkedList<String> list : inf){
             aux = list.stream().reduce((a,b)->a+","+b).orElse("");
             buff.append(aux);
-            if(!aux.isEmpty()) buff.append(",");
+            if(!aux.trim().isEmpty()) {
+                buff.append(",");
+            }
             buff.append("\n");
         }
-        buff.deleteCharAt(buff.length()-1);
+        if(buff.length()>0)
+            buff.deleteCharAt(buff.length()-1);
         return buff.toString().getBytes();
     }
 

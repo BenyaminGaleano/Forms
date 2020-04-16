@@ -47,7 +47,7 @@ public class CSV {
                 {
                     put("gradeCol", value.toString());
                 }
-            }, "idCol", key.replaceAll("\"", ""), "gradeCol");
+            }, "idCol", key.replaceAll("\"", "").trim(), "gradeCol");
             if(result != null) return;
             LinkedList<String> inf = wIn.search("idCol", key);
             System.out.print(inf.get(wIn.settings.get("nameCol", Integer.class)-1));

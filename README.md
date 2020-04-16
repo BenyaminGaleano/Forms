@@ -2,8 +2,8 @@
 En la carpeta **input** coloque el archivo csv descargado de Google Forms.
 En la carpeta **output** coloque los archivos csv descargados del ges, pueden ser varios ya que el form pudo haber recolectado información de más de una sección.
 
-### Notas
-Los archivos config que se encuentran en el archivo principal son para las preferencias:
+### Notas Importantes "Leer"
+Los archivos config que se encuentran en el directorio principal son para las preferencias todos los campos empiezan desde **"1"** no desde **"0"**, para un buen funcionamiento verifique que la hoja que está calificando tenga la configuración correcta según los config:
 
 - En general como convenio si termina con Col este es una configuracion de columna entonces es devuelta en la lista del método getAllCols.
 - **idCol** el número de columna de la identificación del alumno.
