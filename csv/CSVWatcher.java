@@ -41,11 +41,7 @@ public class CSVWatcher {
         while (scan.hasNext()) {
             current = scan.next();
             if(current.equals("\"")){
-                if(stringEnv){
-                    stringAux = "\""+buff.toString()+"\"";
-                    buff.delete(0, buff.length());
-                    buff.append(stringAux);
-                }
+                buff.append("\"");
                 stringEnv = !stringEnv;
             } else if(stringEnv){
                 //ignoramos strings
