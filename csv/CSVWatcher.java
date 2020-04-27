@@ -33,7 +33,7 @@ public class CSVWatcher {
 
     private LinkedList<String> parserLine(String line, AtomicInteger max){
         final Scanner scan = new Scanner(line);
-        String current, stringAux;
+        String current;
         boolean stringEnv = false;
         final StringBuffer buff = new StringBuffer();
         final LinkedList<String> words = new LinkedList<>();
@@ -136,6 +136,7 @@ public class CSVWatcher {
     public void rewrite() {
         csvs.forEach((file, content)->{
             try {
+                if(file.exists()) file.delete();
                 FileOutputStream stream = new FileOutputStream(file);
                 stream.write(toCSV(content));
                 stream.close();

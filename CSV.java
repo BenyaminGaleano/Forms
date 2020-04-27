@@ -60,6 +60,7 @@ public class CSV {
 
         wOut.rewrite();
         File log = new File("./wanted.log");
+        if(log.exists()) log.delete();
         try {
             FileOutputStream stream = new FileOutputStream(log);
             stream.write(buffer.toString().getBytes());
