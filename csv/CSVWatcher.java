@@ -2,8 +2,8 @@ package csv;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -138,13 +138,15 @@ public class CSVWatcher {
     }
 
     public void rewrite() {
-        for(File out:csvs.keySet()){
+        csvs.forEach((file, content)->{
             try {
-                Files.write(out.toPath(), toCSV(csvs.get(out)));
+                FileOutputStream stream = new FileOutputStream(file);
+                stream.write(toCSV(content));
+                stream.close();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-        }
+            } 
+        });
     }
 
 }

@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
@@ -41,6 +43,8 @@ public class CSV {
 
         });
 
+        StringBuffer buffer = new StringBuffer("No encontrados:\n");
+
         ids.forEach((key,value)->{
             String result = wOut.writeAndGet(new TreeMap<String,String>(){
                 private static final long serialVersionUID = 1L;
@@ -50,12 +54,20 @@ public class CSV {
             }, "idCol", key.replaceAll("\"", "").trim(), "gradeCol");
             if(result != null) return;
             LinkedList<String> inf = wIn.search("idCol", key);
-            System.out.print(inf.get(wIn.settings.get("nameCol", Integer.class)-1));
-            System.out.print(" nota: ");
-            System.out.println(value);
+            buffer.append(inf.get(wIn.settings.get("nameCol", Integer.class)-1)+" carnet: "+inf.get(wIn.settings.get("idCol", Integer.class)-1)+" nota: "+value);
+            buffer.append("\n");
         });
 
         wOut.rewrite();
+        File log = new File("./wanted.log");
+        try {
+            FileOutputStream stream = new FileOutputStream(log);
+            stream.write(buffer.toString().getBytes());
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        display.inf("Ver wanted.log");
         display.msg("Terminado..!!");
     }
 }
