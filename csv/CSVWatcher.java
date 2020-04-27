@@ -1,7 +1,7 @@
 package csv;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -65,17 +65,28 @@ public class CSVWatcher {
         LinkedList<Integer> cols = settings.getAllCols();
         AtomicInteger max = new AtomicInteger(cols.stream().max(Integer::compare).orElse(0));
         try {
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                result.add(parserLine(sc.nextLine(), max));
+            FileInputStream in = new FileInputStream(file);
+            StringBuffer buff = new StringBuffer();
+            int aux;
+            while ((aux = in.read()) != -1) {
+                if((char) aux == '\n'){
+                    result.add(parserLine(buff.toString(), max));
+                    buff.delete(0, buff.length());
+                } else {
+                    buff.append((char) aux);
+                }
             }
-            sc.close();
+            in.close();
+            if(buff.length() != 0){
+                result.add(parserLine(buff.toString(), max));
+                buff.delete(0, buff.length());
+            }
             for(int i = settings.get("startline", Integer.class)-1;i<result.size();i++){
                 for(int ii= result.get(i).size(); ii<max.get();ii++){
                     result.get(i).add("");
                 }
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
