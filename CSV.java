@@ -51,7 +51,7 @@ public class CSV {
                 {
                     put("gradeCol", value.toString());
                 }
-            }, "idCol", key.replaceAll("\"", "").trim(), "gradeCol");
+            }, "idCol", key, "gradeCol");
             if(result != null) return;
             LinkedList<String> inf = wIn.search("idCol", key);
             buffer.append(inf.get(wIn.settings.get("nameCol", Integer.class)-1)+" carnet: "+inf.get(wIn.settings.get("idCol", Integer.class)-1)+" nota: "+value);

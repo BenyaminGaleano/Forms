@@ -108,7 +108,7 @@ public class CSVWatcher {
         for(LinkedList<LinkedList<String>> csv : csvs.values()){
             for(int i = start; i < csv.size(); i++){
                 row = csv.get(i);
-                if(row.size()>col && row.get(col).replaceAll("'", "").trim().equals(key.trim())){
+                if(row.size()>col && row.get(col).replaceAll("\"", "").replaceAll("'", "").trim().equals(key.replaceAll("\"", "").replaceAll("'", "").trim())){
                     return row;
                 }
             }
