@@ -50,6 +50,7 @@ public class CSV {
                 private static final long serialVersionUID = 1L;
                 {
                     put("gradeCol", value.toString());
+                    put("commentCol", wOut.settings.get("comment", String.class);
                 }
             }, "idCol", key, "gradeCol");
             if(result != null) return;
