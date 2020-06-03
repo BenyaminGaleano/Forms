@@ -1,0 +1,11 @@
+{
+    "terminal.integrated.env.linux": {
+        "PATH": "/src/main/java"
+    },
+    "terminal.integrated.env.osx": {
+        "PATH": "/src/main/java"
+    },
+    "terminal.integrated.env.windows": {
+        "PATH": "/src/main/java"
+    },
+}

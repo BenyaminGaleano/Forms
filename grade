@@ -1,4 +1,0 @@
-#!/bin/bash
-rm -f *.class csv/*.class config/*.class display/*.class
-javac CSV.java
-java CSV
