@@ -1,0 +1,29 @@
+# Archivo para configuración de entrada
+# autor: Josué Galeano
+
+# Este archivo es leido por un lexer y parser de YAML por lo que
+# hay que regirse al lenguaje tome en cuenta esto:
+
+# IMPORTANTE
+# - Después de una etiqueta deje un espacio (Las tabulaciones no están permitidas)
+#   llave: valor
+# - No es necesario poner comillas, pero si usar ":" para algún campo, 
+#   encierre su texto en comillas simples o dobles de lo contrario no importa
+
+# es el número de columna donde se encuentra el carnet
+idCol: 10
+
+# es el número de columna donde se encuentra la nota
+gradeCol: 3
+
+# es el número de fila donde está el primer dato (ignorando la cabecera)
+startline: 2
+
+# es el número de columna donde se encuentra algún otro dato que le sea relevante
+# para reconocer al estudiante este se anota en wanted.log si el estudiante
+# no se encontró por medio de su carnet (idCol)
+nameCol: 2
+
+# es el número de columna donde se encuentra la sección, es útil para verificar 
+# los estudiantes que no fueron encontrados.
+classCol: 7
