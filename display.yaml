@@ -1,5 +1,0 @@
-# configuraciones de etiquetas para el autograder 
-normal: GRADER
-warning: ADVERTENCIA
-information: INF
-error: ERROR
