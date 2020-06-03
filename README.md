@@ -3,7 +3,7 @@ En la carpeta **input** coloque el archivo csv descargado de Google Forms.
 En la carpeta **output** coloque los archivos csv descargados del ges, pueden ser varios ya que el form pudo haber recolectado información de más de una sección.
 
 ### Descarga
-toca [aquí](https://benyamingaleano.github.io/files/forms.zip) la versión actual, el código de este repositorio no es necesario para calificar.
+toca [aquí](https://benyamingaleano.github.io/files/forms.zip) para descargar la versión actual, el código de este repositorio no es necesario para calificar.
 
 ### Notas Importantes "Leer"
 Los archivos yaml que se encuentran en el directorio principal son para las preferencias todos los campos empiezan desde **"1"** no desde **"0"**, para un buen funcionamiento verifique que la hoja que está calificando tenga la configuración correcta según los yaml:
