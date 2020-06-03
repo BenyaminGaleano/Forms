@@ -1,0 +1,58 @@
+USAR en terminal:
+    - LINUX o MACOS
+        bin/forms
+    - WINDOWS
+        bin/forms.bat
+
+Opcionalmente le puede pasar la fecha limite en formato yyyymmdd
+ejemplo:
+    bin/forms 20200201
+el ejemplo anterior ignoraria todas las respuestas hechas después del 1 de febrero de 2020
+
+USO (General):
+    la primera vez corra el script (según su sistema) le generará 2 carpetas "input"
+    y "output", en la primera copie el csv que le entrega Google Forms y en el segundo copie todos
+    los csv que bajó del GES (Suponiendo que está calificando varias secciones a la vez), el
+    autograder encontrará el mejor intento y lo escribirá en el primer hallazgo del alumno en los
+    archivos de salida, al final si un alumno no se encontró e hizo el formulario este será agregado
+    al archivo wanted.log donde aparecerá la información del mismo (puede que haya ingresado mal
+    su carnet y por lo mismo no haya sido encontrado). Por último configure:
+
+    - input.yaml
+        los archivos csv son archivos para representar filas y columnas de una forma estándar
+        por lo que puede abrir dichos archivos desde Excel, Libre Office, etc, abra los archivos
+        (yo prefiero abrirlos como texto ya que sólo son separados por comas) y verifique lo
+        siguiente todas las columnas y filas empezando desde 1
+        "idCol" debe contener el número de columna donde se encuentra el carnet
+        "gradeCol" debe contener el número de columna donde se encuentra la nota del formulario
+        "startline" debe contener el número de fila donde está el primer dato que importa, o sea
+        debe ignorar los datos de cabecera.
+        "nameCol" debe contener el número de columna donde se encuentra el nombre o correo electronico,
+        lo que usted crea que le sirva para identificar el alumno (es usado para el wanted.log)
+        "classCol" debe contener el número de columna donde se encuentra la sección del alumno
+
+    - output.yaml
+        "idCol" debe contener el número de columna donde se encuentra el carnet
+        "gradeCol" debe contener el número de columna donde se le colocará la nota
+        "grade" debe contener el valor de la tarea, como google forms da notas en forma 
+        nota/nota_maxima el autograder obtiene el resultado y lo mulitiplica por grade, cubriendo
+        lo siguiente:
+            - si el formulario estaba sobre 50 o cualquier otra nota x (120, ...), el grader va a 
+            trasladar la nota si que tenga que intervenir en configuraciones.
+            - si quiere reponderar la nota basta con cambiar el grade, si desea que la máxima nota
+            sea 200 si el estudiante sacó 90 le correspondería 180 sobre 200
+        "startline" debe contener el número de fila donde está el primer dato que importa, o sea
+        debe ignorar los datos de cabecera.
+        "commentCol" debe contener el número de columna de los comentarios
+        "comment" contiene un comentario general, si se equivocó a la hora de calificar y lo 
+        subió al GES, cuando resuba el archivo necesitará dar una explicación, el autograder le
+        permite darla sin necesidad de hacerlo manual.
+
+Recomendaciones:
+    - use Visual studio code
+    - en la terminal vaya al directorio donde va a calificar y coloque "code ."
+    le abrirá visual studio code en la carpeta.
+    - desde ahí abra los archivos yaml así podrá apreciarlos mejor, y podrá abrir los archivos
+    csv de manera directa.
+    - vea este video para darse la idea de como calificar.
+    <PENDIENTE>

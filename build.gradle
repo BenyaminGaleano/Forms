@@ -26,6 +26,7 @@ distZip {
     into(project.name) {
         from './'
         include '*.yaml'
+        include 'LEEME.txt'
         mkdir "/tmp/forms/output"
         mkdir './input'
     }

@@ -45,8 +45,6 @@ public class CSV {
             outputDir.listFiles((file, fname) -> fname.matches(".*\\.csv"))
         );
 
-        System.out.println(wOut.settings);
-
         /* Texto con formato y titulos personalizados */
         Display display = new Display(new ConfigParser("display.yaml"));
 
