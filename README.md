@@ -16,7 +16,8 @@ Los archivos yaml que se encuentran en el directorio principal son para las pref
 - **classCol** el número de columna donde va la sección.
 - **grade** nota máxima para los alumnos, como este trabaja con google forms y el formato es xxx/yyy 
 - **commentCol** el número de columna para el comentario.
-- **comment** un comentario simple
+- **comment** un comentario simple.
+- **classes** contiene una lista de secciones que se toman en cuenta el resto son ignoradas, coloque **all** si quiere calificar todas, para más información lea el comentario sobre dicho campo en el archivo input.yaml.
 donde xxx es la nota que sacó el alumno y yyy es el máximo, los divide y así obtiene el porcentaje de ahí puede reponderar la nota colocando una nota en grade.
 
 ### Ejecutar en terminal

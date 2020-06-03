@@ -37,7 +37,7 @@ public class CSV {
         CSVWatcher wIn = new CSVWatcher(
             new ConfigParser("input.yaml"), 
             inputDir.listFiles((file, fname) -> fname.matches(".*\\.csv"))
-        );
+        );System.out.println(wIn.settings);
 
         /* Observador para archivos de salida */
         CSVWatcher wOut = new CSVWatcher(

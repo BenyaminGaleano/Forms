@@ -27,3 +27,9 @@ nameCol: 2
 # es el número de columna donde se encuentra la sección, es útil para verificar 
 # los estudiantes que no fueron encontrados.
 classCol: 7
+
+# Aquí puede restringir las clases que se calificarán coloquelas separadas por espacios
+# un ejemplo sería "classes: A B C D" si quiere calificar todas coloque la palabra reservada
+# "all" aquí no importa si coloca mayúsculas o minúsculas simpre se tratarán igual (case insensitive)
+# entonces puede colocar "classes: ALL", "classes: a b c d", etc.
+classes: all
