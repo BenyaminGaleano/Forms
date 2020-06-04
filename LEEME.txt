@@ -47,6 +47,9 @@ USO (General):
         "comment" contiene un comentario general, si se equivocó a la hora de calificar y lo 
         subió al GES, cuando resuba el archivo necesitará dar una explicación, el autograder le
         permite darla sin necesidad de hacerlo manual.
+        "classes" contiene una lista de secciones que se toman en cuenta, el resto son ignoradas,
+        coloque "all" si quiere calificar todas, para más información lea el comentario sobre 
+        dicho campo en el archivo input.yaml.
 
 Recomendaciones:
     - use Visual studio code
