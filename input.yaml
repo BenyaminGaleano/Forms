@@ -11,7 +11,7 @@
 #   encierre su texto en comillas simples o dobles de lo contrario no importa
 
 # es el número de columna donde se encuentra el carnet
-idCol: 10
+idCol: 7
 
 # es el número de columna donde se encuentra la nota
 gradeCol: 3
@@ -26,7 +26,7 @@ nameCol: 2
 
 # es el número de columna donde se encuentra la sección, es útil para verificar 
 # los estudiantes que no fueron encontrados.
-classCol: 7
+classCol: 10
 
 # Aquí puede restringir las clases que se calificarán coloquelas separadas por espacios
 # un ejemplo sería "classes: A B C D" si quiere calificar todas coloque la palabra reservada

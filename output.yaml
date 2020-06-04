@@ -20,6 +20,8 @@ gradeCol: 4
 # sobre los formularios de google estos tienen en su casilla de calificación un valor
 # nota/nota_maxima por lo que el grader obtiene el resultado de la división y la multiplica
 # por "grade"
+# valores reales pueden ingresarse pero se redondearan después de multiplicarse por la nota del 
+# formulario
 grade: 100
 
 # es el número de fila donde está el primer dato (ignorando la cabecera)

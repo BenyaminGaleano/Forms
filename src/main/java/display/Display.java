@@ -39,21 +39,21 @@ public class Display {
 
     public void error(final Object info) {
         show(error, RED);
-        show(info + "\n", null);
+        show(info + "\n\n", null);
     }
 
     public void msg(final Object info) {
         show(normal, GREEN);
-        show(info + "\n", null);
+        show(info + "\n\n", null);
     }
 
     public void inf(final Object info) {
         show(information, BLUE);
-        show(info + "\n", null);
+        show(info + "\n\n", null);
     }
 
     public void warning(final Object info) {
         show(warning, YELLOW);
-        show(info + "\n", null);
+        show(info + "\n\n", null);
     }
 }

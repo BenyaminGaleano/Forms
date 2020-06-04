@@ -14,11 +14,10 @@ Los archivos yaml que se encuentran en el directorio principal son para las pref
 - **startline** número de linea donde inicia los datos no se cuentan las etiquetas de columna, sólo los datos puros.
 - **gradeCol** el número de columna donde va la nota.
 - **classCol** el número de columna donde va la sección.
-- **grade** nota máxima para los alumnos, como este trabaja con google forms y el formato es xxx/yyy 
+- **grade** nota máxima para los alumnos, como este trabaja con google forms y el formato es xxx/yyy donde xxx es la nota que sacó el alumno y yyy es el máximo, los divide y así obtiene el porcentaje de ahí puede reponderar la nota colocando una nota en grade.
 - **commentCol** el número de columna para el comentario.
 - **comment** un comentario simple.
-- **classes** contiene una lista de secciones que se toman en cuenta el resto son ignoradas, coloque **all** si quiere calificar todas, para más información lea el comentario sobre dicho campo en el archivo input.yaml.
-donde xxx es la nota que sacó el alumno y yyy es el máximo, los divide y así obtiene el porcentaje de ahí puede reponderar la nota colocando una nota en grade.
+- **classes** contiene una lista de secciones que se toman en cuenta, el resto son ignoradas, coloque **all** si quiere calificar todas, para más información lea el comentario sobre dicho campo en el archivo input.yaml.
 
 ### Ejecutar en terminal
 en linux o macos bin/forms

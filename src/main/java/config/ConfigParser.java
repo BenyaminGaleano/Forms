@@ -15,31 +15,19 @@ public class ConfigParser {
     private final LinkedHashMap<String, Object> settings = new LinkedHashMap<>();
     private final LinkedList<String> errors = new LinkedList<>();
 
-    private void appendError(final String inf, final String current, final int line, final String exInfo){
-        errors.add(inf+"\n>> "+current+"\nLinea "+line+" "+exInfo);
-    }
-
-    private void appendError(final String inf, final String current, final int line){
-        appendError(inf, current, line, "");
-    }
-
-    public ConfigParser(final String configPath)  {
+    public ConfigParser(final String configPath) throws FileNotFoundException {
         final File file = new File(configPath);
         Yaml parser = new Yaml();
-        try {
-            this.settings.putAll(parser.load(new FileInputStream(file)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.settings.putAll(parser.load(new FileInputStream(file)));
     }
 
     public <T> T get(final String value, final Class<T> clss){
         if(clss == String.class){
             return clss.cast(settings.get(value));
         } else if(clss == Double.class){
-            return clss.cast(settings.get(value));
+            return clss.cast(((Number) settings.get(value)).doubleValue());
         } else if(clss == Integer.class){
-            return clss.cast(settings.get(value));
+            return clss.cast(((Number) settings.get(value)).intValue());
         }
         return null;
     }

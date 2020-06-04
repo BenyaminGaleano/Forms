@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -16,22 +17,31 @@ import config.ConfigParser;
  * CSVWatcher
  */
 public class CSVWatcher {
-    private final TreeMap<File, LinkedList<LinkedList<String>>> csvs;
+    public final TreeMap<File, LinkedList<LinkedList<String>>> csvs;
     public final ConfigParser settings;
 
-    public CSVWatcher(ConfigParser configs, File... names) {
+    /*
+     * Si usa este constructor tenga cuidado con la función de consumo ya que en
+     * este momento el csv no está balanceado por lo que una mala configuración o
+     * una petición erronea a alguna columna provocará una excepción
+     */
+    public CSVWatcher(ConfigParser configs, Consumer<LinkedList<String>> doByLine, File... csvs) {
         settings = configs;
-        csvs = new TreeMap<>();
-        parseAll(names);
+        this.csvs = new TreeMap<>();
+        parseAll(doByLine, csvs);
     }
 
-    private void parseAll(File... files) {
+    public CSVWatcher(ConfigParser configs, File... csvs) {
+        this(configs, null, csvs);
+    }
+
+    private void parseAll(Consumer<LinkedList<String>> doByLine, File... files) {
         for (File f : files) {
-            csvs.put(f, toLists(f));
+            csvs.put(f, toLists(f, doByLine));
         }
     }
 
-    private LinkedList<String> parserLine(String line, AtomicInteger max){
+    private LinkedList<String> parserLine(String line, AtomicInteger max) {
         final Scanner scan = new Scanner(line);
         String current;
         boolean stringEnv = false;
@@ -40,27 +50,27 @@ public class CSVWatcher {
         scan.useDelimiter("");
         while (scan.hasNext()) {
             current = scan.next();
-            if(current.equals("\"")){
+            if (current.equals("\"")) {
                 buff.append("\"");
                 stringEnv = !stringEnv;
-            } else if(stringEnv){
-                //ignoramos strings
+            } else if (stringEnv) {
+                // ignoramos strings
                 buff.append(current);
-            } else if(current.equals(",")){
+            } else if (current.equals(",")) {
                 words.add(buff.toString());
                 buff.delete(0, buff.length());
             } else {
                 buff.append(current);
-            } 
+            }
         }
         scan.close();
-        if(words.size()>max.get()) {
+        if (words.size() > max.get()) {
             max.set(words.size());
         }
         return words;
     }
 
-    private LinkedList<LinkedList<String>> toLists(File file) {
+    private LinkedList<LinkedList<String>> toLists(File file, Consumer<LinkedList<String>> doByLine) {
         LinkedList<LinkedList<String>> result = new LinkedList<>();
         LinkedList<Integer> cols = settings.getAllCols();
         AtomicInteger max = new AtomicInteger(cols.stream().max(Integer::compare).orElse(0));
@@ -68,21 +78,43 @@ public class CSVWatcher {
             FileInputStream in = new FileInputStream(file);
             StringBuffer buff = new StringBuffer();
             int aux;
-            while ((aux = in.read()) != -1) {
-                if((char) aux == '\n'){
-                    result.add(parserLine(buff.toString(), max));
-                    buff.delete(0, buff.length());
-                } else {
-                    buff.append((char) aux);
+
+            /* Lecturas */
+            if (doByLine == null) {
+                while ((aux = in.read()) != -1) {
+                    if ((char) aux == '\n') {
+                        result.add(parserLine(buff.toString(), max));
+                        buff.delete(0, buff.length());
+                    } else {
+                        buff.append((char) aux);
+                    }
+                }
+            } else {
+                int rowN = 0;
+                LinkedList<String> lineRow;
+                while ((aux = in.read()) != -1) {
+                    if ((char) aux == '\n') {
+                        rowN++;
+                        lineRow = parserLine(buff.toString(), max);
+                        if (rowN >= settings.get("startline", Integer.class)) {
+                            doByLine.accept(lineRow);
+                        }
+                        result.add(lineRow);
+                        buff.delete(0, buff.length());
+                    } else {
+                        buff.append((char) aux);
+                    }
                 }
             }
+            /* Fin Lecturas */
+
             in.close();
-            if(buff.length() != 0){
+            if (buff.length() != 0) {
                 result.add(parserLine(buff.toString(), max));
                 buff.delete(0, buff.length());
             }
-            for(int i = settings.get("startline", Integer.class)-1;i<result.size();i++){
-                for(int ii= result.get(i).size(); ii<max.get();ii++){
+            for (int i = settings.get("startline", Integer.class) - 1; i < result.size(); i++) {
+                for (int ii = result.get(i).size(); ii < max.get(); ii++) {
                     result.get(i).add("");
                 }
             }
@@ -92,7 +124,7 @@ public class CSVWatcher {
         return result;
     }
 
-    private byte[] toCSV(LinkedList<LinkedList<String>> inf){
+    private byte[] toCSV(LinkedList<LinkedList<String>> inf) throws UnsupportedEncodingException {
         StringBuffer buff = new StringBuffer();
         String aux;
         for(LinkedList<String> list : inf){
@@ -105,7 +137,7 @@ public class CSVWatcher {
         }
         if(buff.length()>0)
             buff.deleteCharAt(buff.length()-1);
-        return buff.toString().getBytes();
+        return buff.toString().getBytes("ISO-8859-1");
     }
 
     public LinkedList<String> search(String colN, String key){
