@@ -1,3 +1,6 @@
+Ve el video sino quieres leer.
+https://drive.google.com/file/d/1fRRwLKIDQzzHfz8ApVW54PiKTGk653yD/view?usp=sharing
+
 USAR en terminal:
     - LINUX o MACOS
         bin/forms
@@ -57,5 +60,3 @@ Recomendaciones:
     le abrirá visual studio code en la carpeta.
     - desde ahí abra los archivos yaml así podrá apreciarlos mejor, y podrá abrir los archivos
     csv de manera directa.
-    - vea este video para darse la idea de como calificar.
-    <PENDIENTE>

@@ -6,6 +6,8 @@ En la carpeta **output** coloque los archivos csv descargados del ges, pueden se
 toca [aquí](https://benyamingaleano.github.io/files/forms.zip) para descargar la versión actual, el código de este repositorio no es necesario para calificar.
 
 ### Notas Importantes "Leer"
+Ve el [video](https://drive.google.com/file/d/1fRRwLKIDQzzHfz8ApVW54PiKTGk653yD/view?usp=sharing) si no quieres leer.
+
 Los archivos yaml que se encuentran en el directorio principal son para las preferencias todos los campos empiezan desde **"1"** no desde **"0"**, para un buen funcionamiento verifique que la hoja que está calificando tenga la configuración correcta según los yaml:
 
 - En general como convenio si termina con Col este es una configuracion de columna entonces es devuelta en la lista del método getAllCols.
