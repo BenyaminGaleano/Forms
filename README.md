@@ -20,5 +20,5 @@ Los archivos yaml que se encuentran en el directorio principal son para las pref
 - **classes** contiene una lista de secciones que se toman en cuenta, el resto son ignoradas, coloque **all** si quiere calificar todas, para más información lea el comentario sobre dicho campo en el archivo input.yaml.
 
 ### Ejecutar en terminal
-en linux o macos bin/forms
-en windows bin/forms.bat
+- en **GNU/Linux** o macos bin/forms
+- en **windows** bin/forms.bat
