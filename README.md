@@ -21,4 +21,4 @@ Los archivos yaml que se encuentran en el directorio principal son para las pref
 
 ### Ejecutar en terminal
 - en **GNU/Linux** o **MacOS** bin/forms
-- en **windows** bin/forms.bat
+- en **Windows** bin/forms.bat
