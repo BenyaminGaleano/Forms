@@ -26,4 +26,4 @@ Los archivos yaml que se encuentran en el directorio principal son para las pref
 - en **Windows** bin/forms.bat
 
 ### Versionado
-se usará el versionado semántico el cual puede consultar en este [link](https://semver.org/lang/es/)
+se usará el **versionado semántico**, el cual puede consultar en este [link](https://semver.org/lang/es/)
