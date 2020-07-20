@@ -24,3 +24,6 @@ Los archivos yaml que se encuentran en el directorio principal son para las pref
 ### Ejecutar en terminal
 - en **GNU/Linux** o **MacOS** bin/forms
 - en **Windows** bin/forms.bat
+
+### Versionado
+se usará el versionado semántico el cual puede consultar en este [link](https://semver.org/lang/es/)
